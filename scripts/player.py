@@ -1,51 +1,39 @@
-
 from py4godot.methods import private
 from py4godot.signals import signal, SignalArg
 from py4godot.classes import gdclass
+from py4godot.classes import Input
 from py4godot.classes.core import Vector3
+from py4godot.classes.core import Vector2, NodePath
 from py4godot.classes.CharacterBody2D.CharacterBody2D import CharacterBody2D
 
 @gdclass
 class Player(CharacterBody2D):
 
-	# define properties like this
-	
-	SPEED = 130.0
-	JUMP_VELOCITY = -300.0
-	
-	# Get the gravity from the project settings to be synced with RigidBody nodes.
-	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+	speed = 100.0
+	velocity = 0
+	screen_size = None
+	set_process(True)
 
+	def _ready(self):
+		print("hello")
+		self.animatedSprite = self.get_node("AnimatedSprite2D")
+		self.screen_size = self.get_viewport_rect().size
+		self._input = Input.instance()
 
-	# define signals like this
-	#test_signal = signal([SignalArg("test_arg", int)])
-
-
-	def _ready(self) -> None:
-		animatedSprite = $AnimatedSprite2D
-
-	def _process(self, delta:float) -> None:
-		direction = Input.get_axis("move_left", "move_right")
-		#flip sprite
-		if direction > 0:
-			animatedSprite.flip_h = false
-		elif direction < 0:
-			animatedSprite.flip_h = true
-		#Play animation
-		if direction == 0:
-			animatedSprite.play("Idle")
+	def _process(self, delta: float):
+		print("hello")
+		if self._input.is_action_pressed("move_right"):
+			self.velocity.x += 1
+		if self._input.is_action_pressed("move_left"):
+			self.velocity.x -= 1
+		if self.velocity.length() > 0:
+			self.velocity = self.velocity.normalized() * self.speed
+			self.animatedSprite.play("walk")
+			if self.velocity.x < 0:
+				self.animatedSprite.flip_h = True
+			else:
+				self.animatedSprite.flip_h = False
 		else:
-			animatedSprite.play("run")
-		#apply momvement
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-		move_and_slide()
-
-		
+			self.animatedSprite.play("stand_front")
 	
-	# Hide the method in the godot editor
-	@private
-	def test_method(self):
-		pass
+		self.velocity = self.move_and_slide(self.velocity)

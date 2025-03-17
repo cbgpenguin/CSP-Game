@@ -5,19 +5,17 @@
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_mhtsl")]
-_import_path = NodePath("")
-process_physics_priority = 0
-editor_description = ""
-show_behind_parent = false
-z_index = 0
-texture_repeat = 0
-use_parent_material = false
-skew = 0.0
-collision_priority = 1.0
-velocity = Vector2(0, 0)
-floor_stop_on_slope = true
-floor_snap_length = 1.0
-safe_margin = 0.08
+unique_name_in_owner = false
+auto_translate_mode = 0
+self_modulate = Color(1, 1, 1, 1)
+visibility_layer = 1
+texture_filter = 0
+position = Vector2(0, 0)
+disable_mode = 0
+input_pickable = false
+slide_on_ceiling = true
+floor_constant_speed = false
+platform_on_leave = 0
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(-10, -106)

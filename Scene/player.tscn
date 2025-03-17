@@ -177,7 +177,8 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 _import_path = NodePath("")
-process_mode = 0
+process_mode = 3
+process_priority = 2
 process_physics_priority = 0
 physics_interpolation_mode = 0
 editor_description = ""
@@ -214,4 +215,4 @@ scale = Vector2(1.18595, 1.08)
 sprite_frames = SubResource("SpriteFrames_j47wa")
 animation = &"stand_front"
 autoplay = "stand_front"
-frame_progress = 0.074183
+frame_progress = 0.330162
