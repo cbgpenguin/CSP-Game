@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://bt42dl8ynydqw"]
 
 [ext_resource type="Texture2D" uid="uid://c4cnme6gsghcj" path="res://resorces/pixilart-sprite.png" id="1_kelma"]
-[ext_resource type="Script" path="res://scripts/player.py" id="1_y8w33"]
+[ext_resource type="Script" path="res://scripts/Player.py" id="1_y8w33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjf4n"]
 size = Vector2(65, 189)

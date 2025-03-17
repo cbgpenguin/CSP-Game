@@ -1,7 +1,7 @@
 from py4godot.methods import private
 from py4godot.signals import signal, SignalArg
 from py4godot.classes import gdclass
-from py4godot.classes import Input
+from py4godot.classes.Input import Input
 from py4godot.classes.core import Vector3
 from py4godot.classes.core import Vector2, NodePath
 from py4godot.classes.CharacterBody2D.CharacterBody2D import CharacterBody2D
@@ -12,13 +12,12 @@ class Player(CharacterBody2D):
 	speed = 100.0
 	velocity = 0
 	screen_size = None
-	set_process(True)
 
 	def _ready(self):
 		print("hello")
 		self.animatedSprite = self.get_node("AnimatedSprite2D")
 		self.screen_size = self.get_viewport_rect().size
-		self._input = Input.instance()
+		_input = Input.instance()
 
 	def _process(self, delta: float):
 		print("hello")
