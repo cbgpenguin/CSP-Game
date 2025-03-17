@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://bt42dl8ynydqw"]
+[gd_scene load_steps=23 format=3 uid="uid://bt42dl8ynydqw"]
 
 [ext_resource type="Texture2D" uid="uid://c4cnme6gsghcj" path="res://resorces/pixilart-sprite.png" id="1_kelma"]
+[ext_resource type="Script" path="res://scripts/player.py" id="1_y8w33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjf4n"]
 size = Vector2(65, 189)
@@ -175,6 +176,33 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+unique_name_in_owner = false
+process_priority = 0
+process_thread_group = 0
+auto_translate_mode = 0
+visible = true
+self_modulate = Color(1, 1, 1, 1)
+top_level = false
+visibility_layer = 1
+z_as_relative = true
+texture_filter = 0
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+disable_mode = 0
+collision_mask = 1
+input_pickable = false
+up_direction = Vector2(0, -1)
+slide_on_ceiling = true
+wall_min_slide_angle = 0.261799
+floor_constant_speed = false
+floor_max_angle = 0.785398
+platform_on_leave = 0
+platform_wall_layers = 0
+script = ExtResource("1_y8w33")
+test_int = 5
+test_float = 5.2
+test_bool = true
+test_vector = Vector3(1, 2, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-12.5, -94.5)
@@ -183,9 +211,9 @@ shape = SubResource("RectangleShape2D_jjf4n")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 3
-position = Vector2(-8.25, -97)
+position = Vector2(-8.25, -96)
 scale = Vector2(1.18595, 1.08)
 sprite_frames = SubResource("SpriteFrames_j47wa")
 animation = &"stand_front"
 autoplay = "stand_front"
-frame_progress = 0.475242
+frame_progress = 0.074183

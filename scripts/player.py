@@ -9,10 +9,10 @@ from py4godot.classes.CharacterBody2D.CharacterBody2D import CharacterBody2D
 class player(CharacterBody2D):
 
 	# define properties like this
-	test_int: int = 5
-	test_float: float = 5.2
-	test_bool: bool = True
-	test_vector: Vector3 = Vector3.new3(1,2,3)
+	test_int = 5
+	test_float= 5.2
+	test_bool = True
+	test_vector = Vector3.new3(1,2,3)
 
 	# define signals like this
 	test_signal = signal([SignalArg("test_arg", int)])
