@@ -1,6 +1,7 @@
 from py4godot.methods import private
 from py4godot.signals import signal, SignalArg
 from py4godot.classes import gdclass
+from py4godot.classes.AnimatedSprite2D import AnimatedSprite2D
 from py4godot.classes.Input import Input
 from py4godot.classes.core import Vector3
 from py4godot.classes.core import Vector2, NodePath
@@ -14,25 +15,22 @@ class Player(CharacterBody2D):
 	screen_size = None
 
 	def _ready(self):
-		print("hello")
-		self.animatedSprite = self.get_node("AnimatedSprite2D")
+		print("ready")
+		animatedSprite = self.get_node(NodePath.new2("AnimatedSprite2D"))
 		self.screen_size = self.get_viewport_rect().size
-		_input = Input.instance()
-
+		self._input_singleton = Input.instance()
+	
 	def _process(self, delta: float):
-		print("hello")
-		if self._input.is_action_pressed("move_right"):
-			self.velocity.x += 1
-		if self._input.is_action_pressed("move_left"):
-			self.velocity.x -= 1
-		if self.velocity.length() > 0:
-			self.velocity = self.velocity.normalized() * self.speed
+		print("processing")
+		_input = self._input_singleton
+		print("hi")
+		if _input.is_action_pressed("move_right"):
+			animatedSprite.play("walk")
+			self.animatedSprite.flip_h = True
+			self.position.x += self.speed * delta
+		elif _input.is_action_pressed("move_left"):
 			self.animatedSprite.play("walk")
-			if self.velocity.x < 0:
-				self.animatedSprite.flip_h = True
-			else:
-				self.animatedSprite.flip_h = False
+			self.animatedSprite.flip_h = False
+			self.position.x -= self.speed * delta
 		else:
 			self.animatedSprite.play("stand_front")
-	
-		self.velocity = self.move_and_slide(self.velocity)
