@@ -1,12 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://dolfmu0v25x6g"]
+[gd_scene load_steps=3 format=3 uid="uid://dolfmu0v25x6g"]
 
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://infd5ky7cjbg" path="res://resorces/backrounds/backdrop1.png" id="2_yqjtg"]
 
 [node name="game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(0, -30)
+scale = Vector2(1.2, 1.2)
+up_direction = Vector2(0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-limit_smoothed = true
+position = Vector2(-4, -102)
+scale = Vector2(6.3989, -34.9496)
+zoom = Vector2(1.5, 1.5)
+limit_bottom = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-25, -219)
+scale = Vector2(1.16712, 1.16712)
+texture = ExtResource("2_yqjtg")
