@@ -1,15 +1,26 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 250.0 * 60 # Pixles/s
+@onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
+	# Direction is -1, 1, or 0
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		velocity.x = move_toward(velocity.x, 0, (1000 * delta)) #Slows it down
+	# Animation
+	if direction == 0:
+		animatedSprite2d.flip_h = false
+		animatedSprite2d.play("default (front face short idel)")
+	elif direction == 1:
+		animatedSprite2d.flip_h = false
+		animatedSprite2d.play("walking (self explanatory but I felt like giving a description)")
+	elif direction == -1:
+		animatedSprite2d.flip_h = true
+		animatedSprite2d.play("walking (self explanatory but I felt like giving a description)")
+		
 	move_and_slide()
-"res://resorces/backdrop1.png"

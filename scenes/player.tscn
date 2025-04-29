@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://mh6ihk61d2ke"]
+[gd_scene load_steps=23 format=3 uid="uid://mh6ihk61d2ke"]
 
 [ext_resource type="Texture2D" uid="uid://c4cnme6gsghcj" path="res://resorces/player/pixilart-sprite.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dmw1rnol0h3ey" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://bvh84m6c42ocd" path="res://resorces/player/detective-walk-animation-place-holder.png" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_3vyb7")
@@ -67,8 +68,22 @@ region = Rect2(265, 9, 73, 181)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(144, 9, 73, 181)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(15, 5, 101, 193)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_nvl01"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"crawling (crouching but moving)",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"crouching (crawling but not going forwards)",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_onrkg")
@@ -119,8 +134,36 @@ animations = [{
 "texture": SubResource("AtlasTexture_u1c27")
 }],
 "loop": true,
-"name": &"default",
+"name": &"default (front face short idel)",
 "speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"longIdel (just standing there. taps foot ext.)",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"notWalking (short after they stop walking just standing looking in one direction before turning to center or walking again)",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"running (ohh whats the pretty cat boi running from??)",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"turning  (going from front facing positions to side and vice versa)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}],
+"loop": true,
+"name": &"walking (self explanatory but I felt like giving a description)",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
@@ -132,8 +175,8 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -91)
 sprite_frames = SubResource("SpriteFrames_nvl01")
-autoplay = "default"
-frame_progress = 0.807976
+animation = &"turning  (going from front facing positions to side and vice versa)"
+autoplay = "default (front face short idel)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.66302, -83.2201)
