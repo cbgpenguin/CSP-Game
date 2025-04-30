@@ -175,7 +175,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -91)
 sprite_frames = SubResource("SpriteFrames_nvl01")
-animation = &"turning  (going from front facing positions to side and vice versa)"
+animation = &"default (front face short idel)"
 autoplay = "default (front face short idel)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

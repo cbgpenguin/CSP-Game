@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dolfmu0v25x6g"]
+[gd_scene load_steps=4 format=3 uid="uid://dolfmu0v25x6g"]
 
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://infd5ky7cjbg" path="res://resorces/backrounds/backdrop1.png" id="2_yqjtg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
+normal = Vector2(-0.00276242, -0.999996)
 
 [node name="game" type="Node2D"]
 
@@ -14,15 +17,38 @@ up_direction = Vector2(0, 1)
 position = Vector2(-4, -102)
 scale = Vector2(6.3989, -34.9496)
 zoom = Vector2(1.5, 1.5)
+limit_left = -462
+limit_right = 412
 limit_bottom = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Room" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Room"]
 position = Vector2(-25, -219)
 scale = Vector2(1.16712, 1.16712)
 texture = ExtResource("2_yqjtg")
+
+[node name="Window" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Window"]
+position = Vector2(-25, -219)
+scale = Vector2(1.16712, 1.16712)
+
+[node name="LeftRoomBoarder" type="StaticBody2D" parent="."]
+position = Vector2(-442, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRoomBoarder"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="RightRoomBoarder" type="StaticBody2D" parent="."]
+position = Vector2(375, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightRoomBoarder"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
