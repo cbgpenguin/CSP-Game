@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
 	# Direction is -1, 1, or 0
-	if direction:
+	if direction: # If direction is not = to zero (I think)
 		velocity.x = direction * SPEED * delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, (1000 * delta)) #Slows it down
@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 			animatedSprite2d.play("walking (self explanatory but I felt like giving a description)")
 	else:
 		setDefaltAnimation()
-	
 	
 	colidedLastFrame = move_and_slide()
 
