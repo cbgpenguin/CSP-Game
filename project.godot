@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Csp Hold On"
+config/name="\"Tails Noir\"-like POC :3"
 run/main_scene="uid://dolfmu0v25x6g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

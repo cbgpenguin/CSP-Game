@@ -12,6 +12,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.383838, 0.383838, 0.383838, 1, 0, 0, 0, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lnu2h"]
 gradient = SubResource("Gradient_yqjtg")
+width = 128
+height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -43,11 +45,22 @@ position = Vector2(-25, -219)
 scale = Vector2(1.16712, 1.16712)
 texture = ExtResource("2_yqjtg")
 
-[node name="window" type="ParallaxLayer" parent="backrounds"]
+[node name="windowCloseBuildings" type="ParallaxLayer" parent="backrounds"]
 z_index = -5
-motion_scale = Vector2(0.7, 0.7)
+motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(200, 200)
 
-[node name="Sprite2D" type="Sprite2D" parent="backrounds/window"]
+[node name="Sprite2D" type="Sprite2D" parent="backrounds/windowCloseBuildings"]
+position = Vector2(-25, -219)
+scale = Vector2(1.16712, 1.16712)
+texture = ExtResource("2_yqjtg")
+
+[node name="windowFarBuildings" type="ParallaxLayer" parent="backrounds"]
+z_index = -5
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(300, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="backrounds/windowFarBuildings"]
 position = Vector2(-25, -219)
 scale = Vector2(1.16712, 1.16712)
 texture = ExtResource("2_yqjtg")
@@ -55,29 +68,29 @@ texture = ExtResource("2_yqjtg")
 [node name="CanvasModulate" type="CanvasModulate" parent="backrounds"]
 position = Vector2(-10, -287)
 scale = Vector2(5.70312, 6.52344)
-color = Color(0.712833, 0.718859, 1, 1)
+color = Color(0.649893, 0.650042, 1, 1)
 
-[node name="RoomSides" type="Node" parent="."]
+[node name="roomSides" type="Node" parent="."]
 
-[node name="LeftRoomBoarder" type="StaticBody2D" parent="RoomSides"]
+[node name="LeftRoomBoarder" type="StaticBody2D" parent="roomSides"]
 position = Vector2(-442, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomSides/LeftRoomBoarder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roomSides/LeftRoomBoarder"]
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
-[node name="RightRoomBoarder" type="StaticBody2D" parent="RoomSides"]
+[node name="RightRoomBoarder" type="StaticBody2D" parent="roomSides"]
 position = Vector2(375, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomSides/RightRoomBoarder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roomSides/RightRoomBoarder"]
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="overHeadLight" type="PointLight2D" parent="."]
 top_level = true
 light_mask = 3
 position = Vector2(-135, -344)
-scale = Vector2(8.69531, 8.85547)
+scale = Vector2(4.33273, 4.29832)
 color = Color(1, 1, 0.439216, 1)
 energy = 2.0
 range_layer_min = -512

@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	if direction: # If direction is not = to zero (I think)
 		velocity.x = direction * SPEED * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, (1000 * delta)) #Slows it down
+		velocity.x = move_toward(velocity.x, 0, (1000 * delta)) #Slows it down by taking x velocity and incrementing it towards 0 
 	# Animation
 	if !colidedLastFrame:
 		if direction == 0:
