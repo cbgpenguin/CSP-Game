@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dolfmu0v25x6g"]
+[gd_scene load_steps=9 format=3 uid="uid://dolfmu0v25x6g"]
 
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://infd5ky7cjbg" path="res://resorces/backrounds/backdrop1.png" id="2_yqjtg"]
@@ -16,6 +16,20 @@ width = 128
 height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_lnu2h"]
+offsets = PackedFloat32Array(0.0474576, 0.138983, 0.722034)
+colors = PackedColorArray(1, 1, 1, 1, 0.809045, 0.809045, 0.809045, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lbhrr"]
+gradient = SubResource("Gradient_lnu2h")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yqjtg"]
+polygon = PackedVector2Array(203, -361, 413, -361, 413, -339, 203, -340)
 
 [node name="game" type="Node2D"]
 
@@ -99,3 +113,19 @@ shadow_filter = 1
 shadow_filter_smooth = 1.6
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_lnu2h")
+
+[node name="deskBarLight" type="PointLight2D" parent="."]
+position = Vector2(319, -332)
+scale = Vector2(5.48892, 3.54915)
+color = Color(1, 1, 0.423529, 1)
+energy = 1.6
+range_layer_min = -500
+range_layer_max = 5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.6
+texture = SubResource("GradientTexture2D_lbhrr")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_yqjtg")
