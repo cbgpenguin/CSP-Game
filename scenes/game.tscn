@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dolfmu0v25x6g"]
+[gd_scene load_steps=15 format=3 uid="uid://dolfmu0v25x6g"]
 
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://infd5ky7cjbg" path="res://resorces/backrounds/backdrop1.png" id="2_yqjtg"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
-normal = Vector2(-0.00276242, -0.999996)
 
 [sub_resource type="Gradient" id="Gradient_yqjtg"]
 offsets = PackedFloat32Array(0.0305085, 0.288136, 0.708475)
@@ -16,6 +13,74 @@ width = 128
 height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lbhrr"]
+polygon = PackedVector2Array(-30.235, 36.9912, 27.6962, 36.9912, 27.0038, 66.7703, 23.7725, 67.0029, 23.5417, 45.5992, -14.7713, 46.0645, -15.2329, 65.8397, -28.8502, 65.8397)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iywne"]
+polygon = PackedVector2Array(-71.0868, -9.53861, -33.9278, -9.53861, -33.697, 66.0723, -70.856, 65.3744)
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+resource_name = "flicker"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.43333, 4.6, 8.63333, 8.73333, 53.6333, 53.7, 54.0667, 54.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(53.6667, 59.8),
+"transitions": PackedFloat32Array(0.933035, 53231.9),
+"update": 0,
+"values": [0.3, 1.8]
+}
+
+[sub_resource type="Animation" id="Animation_iywne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
+_data = {
+&"RESET": SubResource("Animation_iywne"),
+&"flicker": SubResource("Animation_lbhrr")
+}
 
 [sub_resource type="Gradient" id="Gradient_lnu2h"]
 offsets = PackedFloat32Array(0.0474576, 0.138983, 0.722034)
@@ -31,7 +96,69 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yqjtg"]
 polygon = PackedVector2Array(203, -361, 413, -361, 413, -339, 203, -340)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lnu2h"]
+polygon = PackedVector2Array(207, -193, 411, -195, 412, -184, 204, -185)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
+normal = Vector2(-0.00276242, -0.999996)
+
 [node name="game" type="Node2D"]
+
+[node name="lighting" type="Node" parent="."]
+
+[node name="hangingLight" type="PointLight2D" parent="lighting"]
+top_level = true
+light_mask = 3
+position = Vector2(-135, -344)
+scale = Vector2(4.33273, 4.29832)
+color = Color(1, 1, 0.439216, 1)
+energy = 1.8
+range_layer_min = -512
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.6
+shadow_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_lnu2h")
+
+[node name="desk" type="LightOccluder2D" parent="lighting/hangingLight"]
+occluder = SubResource("OccluderPolygon2D_lbhrr")
+occluder_light_mask = 4
+
+[node name="bookshelf" type="LightOccluder2D" parent="lighting/hangingLight"]
+occluder = SubResource("OccluderPolygon2D_iywne")
+occluder_light_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lighting/hangingLight"]
+libraries = {
+&"": SubResource("AnimationLibrary_p57ef")
+}
+autoplay = "flicker"
+
+[node name="tableBarLight" type="PointLight2D" parent="lighting"]
+position = Vector2(319, -332)
+scale = Vector2(5.48892, 3.54915)
+color = Color(1, 1, 0.423529, 1)
+energy = 1.6
+range_layer_min = -500
+range_layer_max = 5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.7
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_lbhrr")
+
+[node name="shelf" type="LightOccluder2D" parent="lighting/tableBarLight"]
+position = Vector2(-58.1171, 93.5435)
+scale = Vector2(0.182185, 0.281758)
+occluder = SubResource("OccluderPolygon2D_yqjtg")
+occluder_light_mask = 2
+
+[node name="tableTop" type="LightOccluder2D" parent="lighting/tableBarLight"]
+position = Vector2(-58.1171, 93.5435)
+scale = Vector2(0.182185, 0.281758)
+occluder = SubResource("OccluderPolygon2D_lnu2h")
+occluder_light_mask = 2
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(0, -30)
@@ -99,33 +226,3 @@ position = Vector2(375, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="roomSides/RightRoomBoarder"]
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
-
-[node name="overHeadLight" type="PointLight2D" parent="."]
-top_level = true
-light_mask = 3
-position = Vector2(-135, -344)
-scale = Vector2(4.33273, 4.29832)
-color = Color(1, 1, 0.439216, 1)
-energy = 2.0
-range_layer_min = -512
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 1.6
-shadow_item_cull_mask = 3
-texture = SubResource("GradientTexture2D_lnu2h")
-
-[node name="deskBarLight" type="PointLight2D" parent="."]
-position = Vector2(319, -332)
-scale = Vector2(5.48892, 3.54915)
-color = Color(1, 1, 0.423529, 1)
-energy = 1.6
-range_layer_min = -500
-range_layer_max = 5
-range_item_cull_mask = 3
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 0.6
-texture = SubResource("GradientTexture2D_lbhrr")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_yqjtg")
