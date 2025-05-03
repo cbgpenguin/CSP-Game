@@ -43,10 +43,10 @@ tracks/1/path = NodePath(".:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(53.6667, 59.8),
-"transitions": PackedFloat32Array(0.933035, 53231.9),
+"times": PackedFloat32Array(8.66667, 15.3667, 15.5667, 53.6667, 59.8),
+"transitions": PackedFloat32Array(1, 1, 1, 0.933035, 53231.9),
 "update": 0,
-"values": [0.3, 1.8]
+"values": [0.85, 0.85, 1.8, 0.3, 1.8]
 }
 
 [sub_resource type="Animation" id="Animation_iywne"]
@@ -206,7 +206,7 @@ position = Vector2(-25, -219)
 scale = Vector2(1.16712, 1.16712)
 texture = ExtResource("2_yqjtg")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="backrounds"]
+[node name="darkner(give your heart shaped object)" type="CanvasModulate" parent="backrounds"]
 position = Vector2(-10, -287)
 scale = Vector2(5.70312, 6.52344)
 color = Color(0.649893, 0.650042, 1, 1)
