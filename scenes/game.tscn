@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dolfmu0v25x6g"]
+[gd_scene load_steps=19 format=3 uid="uid://dolfmu0v25x6g"]
 
 [ext_resource type="AudioStream" uid="uid://gc66732gdlvv" path="res://resorces/sounds/lightBulbBuzz.mp3" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -10,8 +10,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.383838, 0.383838, 0.383838, 1, 0, 0, 0, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lnu2h"]
 gradient = SubResource("Gradient_yqjtg")
-width = 640
-height = 640
+width = 1280
+height = 1280
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -19,7 +19,7 @@ fill_from = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(-30.235, 36.9912, 27.6962, 36.9912, 27.0038, 66.7703, 23.7725, 67.0029, 23.5417, 45.5992, -14.7713, 46.0645, -15.2329, 65.8397, -28.8502, 65.8397)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iywne"]
-polygon = PackedVector2Array(-71.0868, -9.53861, -33.9278, -9.53861, -33.697, 66.0723, -70.856, 65.3744)
+polygon = PackedVector2Array(-71.0868, -9.53861, -33.697, -9.53861, -34.6202, 65.8397, -70.856, 65.3744)
 
 [sub_resource type="Animation" id="Animation_iywne"]
 length = 0.001
@@ -50,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/2/path = NodePath("lightbulbNoise:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -62,7 +62,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/3/path = NodePath("lightbulbNoise:pitch_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -103,7 +103,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/path = NodePath("lightbulbNoise")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -134,19 +134,19 @@ tracks/2/use_blend = true
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/3/path = NodePath("lightbulbNoise:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(8.46667, 8.63333, 15.3333, 15.7667, 53.4333, 53.7, 55.6667, 55.9333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -15.0, -20.0, 0.0, 0.0, -15.0, -15.0, 0.0]
+"values": [10.0, 0.0, 0.0, 10.0, 10.0, 0.0, 0.0, 10.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/4/path = NodePath("lightbulbNoise:pitch_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -179,6 +179,13 @@ polygon = PackedVector2Array(203, -361, 413, -361, 413, -339, 203, -340)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lnu2h"]
 polygon = PackedVector2Array(207, -193, 411, -195, 412, -184, 204, -185)
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lnu2h"]
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iywne"]
+gradient = SubResource("Gradient_lbhrr")
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 normal = Vector2(-0.00276242, -0.999996)
 
@@ -199,7 +206,7 @@ shadow_filter = 1
 shadow_filter_smooth = 1.6
 shadow_item_cull_mask = 6
 texture = SubResource("GradientTexture2D_lnu2h")
-texture_scale = 0.25
+texture_scale = 0.13
 
 [node name="desk" type="LightOccluder2D" parent="lighting/hangingLight"]
 occluder = SubResource("OccluderPolygon2D_lbhrr")
@@ -215,7 +222,11 @@ libraries = {
 }
 autoplay = "flicker"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="lighting/hangingLight"]
+[node name="lightbulbNoise" type="AudioStreamPlayer2D" parent="lighting/hangingLight"]
+max_distance = 244.0
+attenuation = 0.812252
+panning_strength = 1.21
+bus = &"SoundEffects"
 
 [node name="tableBarLight" type="PointLight2D" parent="lighting"]
 position = Vector2(319, -332)
@@ -276,9 +287,9 @@ motion_scale = Vector2(0.2, 0.2)
 motion_offset = Vector2(200, 200)
 
 [node name="Sprite2D" type="Sprite2D" parent="backrounds/windowCloseBuildings"]
-position = Vector2(-25, -219)
+position = Vector2(166, -210)
 scale = Vector2(1.16712, 1.16712)
-texture = ExtResource("2_yqjtg")
+texture = SubResource("NoiseTexture2D_lnu2h")
 
 [node name="windowFarBuildings" type="ParallaxLayer" parent="backrounds"]
 z_index = -5
@@ -286,9 +297,9 @@ motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(300, 300)
 
 [node name="Sprite2D" type="Sprite2D" parent="backrounds/windowFarBuildings"]
-position = Vector2(-25, -219)
-scale = Vector2(1.16712, 1.16712)
-texture = ExtResource("2_yqjtg")
+position = Vector2(46, -216)
+scale = Vector2(4.93882, 5.66146)
+texture = SubResource("GradientTexture2D_iywne")
 
 [node name="darkner(give your heart shaped object)" type="CanvasModulate" parent="backrounds"]
 position = Vector2(-10, -287)
