@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dolfmu0v25x6g"]
+[gd_scene load_steps=16 format=3 uid="uid://dolfmu0v25x6g"]
 
+[ext_resource type="AudioStream" uid="uid://gc66732gdlvv" path="res://resorces/sounds/lightBulbBuzz.mp3" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://infd5ky7cjbg" path="res://resorces/backrounds/backdrop1.png" id="2_yqjtg"]
 
@@ -9,8 +10,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.383838, 0.383838, 0.383838, 1, 0, 0, 0, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lnu2h"]
 gradient = SubResource("Gradient_yqjtg")
-width = 128
-height = 128
+width = 640
+height = 640
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -19,35 +20,6 @@ polygon = PackedVector2Array(-30.235, 36.9912, 27.6962, 36.9912, 27.0038, 66.770
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iywne"]
 polygon = PackedVector2Array(-71.0868, -9.53861, -33.9278, -9.53861, -33.697, 66.0723, -70.856, 65.3744)
-
-[sub_resource type="Animation" id="Animation_lbhrr"]
-resource_name = "flicker"
-length = 60.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(4.43333, 4.6, 8.63333, 8.73333, 53.6333, 53.7, 54.0667, 54.1333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, true, false, true, false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(8.66667, 15.3667, 15.5667, 53.6667, 59.8),
-"transitions": PackedFloat32Array(1, 1, 1, 0.933035, 53231.9),
-"update": 0,
-"values": [0.85, 0.85, 1.8, 0.3, 1.8]
-}
 
 [sub_resource type="Animation" id="Animation_iywne"]
 length = 0.001
@@ -75,6 +47,114 @@ tracks/1/keys = {
 "update": 0,
 "values": [1.8]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+resource_name = "flicker"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.43333, 4.488, 8.63333, 8.7, 53.6333, 53.7, 55.7667, 55.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.46667, 8.64, 15.3667, 15.5, 53.5333, 53.6667, 55.7333, 55.78),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 0.933035, 0.933035, 53231.9),
+"update": 0,
+"values": [1.8, 0.85, 0.85, 1.8, 1.8, 0.8, 0.8, 1.8]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 61.5389,
+"start_offset": 7.78,
+"stream": ExtResource("1_lnu2h")
+}, {
+"end_offset": 69.69,
+"start_offset": 0.0,
+"stream": ExtResource("1_lnu2h")
+}, {
+"end_offset": 23.7,
+"start_offset": 5.0,
+"stream": ExtResource("1_lnu2h")
+}, {
+"end_offset": 20.1787,
+"start_offset": 51.611,
+"stream": ExtResource("1_lnu2h")
+}, {
+"end_offset": 0.0,
+"start_offset": 20.5668,
+"stream": ExtResource("1_lnu2h")
+}],
+"times": PackedFloat32Array(0, 4.53333, 8.66667, 53.8, 55.8333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(8.46667, 8.63333, 15.3333, 15.7667, 53.4333, 53.7, 55.6667, 55.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -15.0, -20.0, 0.0, 0.0, -15.0, -15.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.43333, 8.63333, 15.1, 15.5333, 53.4333, 53.7, 55.6333, 55.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.2, 0.5, 1.0, 1.0, 0.2, 0.2, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
 _data = {
@@ -88,8 +168,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.809045, 0.809045, 0.809045, 1, 0, 0, 0, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lbhrr"]
 gradient = SubResource("Gradient_lnu2h")
-width = 128
-height = 128
+width = 1280
+height = 1280
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -119,6 +199,7 @@ shadow_filter = 1
 shadow_filter_smooth = 1.6
 shadow_item_cull_mask = 6
 texture = SubResource("GradientTexture2D_lnu2h")
+texture_scale = 0.25
 
 [node name="desk" type="LightOccluder2D" parent="lighting/hangingLight"]
 occluder = SubResource("OccluderPolygon2D_lbhrr")
@@ -134,6 +215,8 @@ libraries = {
 }
 autoplay = "flicker"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="lighting/hangingLight"]
+
 [node name="tableBarLight" type="PointLight2D" parent="lighting"]
 position = Vector2(319, -332)
 scale = Vector2(5.48892, 3.54915)
@@ -147,6 +230,7 @@ shadow_filter = 1
 shadow_filter_smooth = 1.7
 shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_lbhrr")
+texture_scale = 0.1
 
 [node name="shelf" type="LightOccluder2D" parent="lighting/tableBarLight"]
 position = Vector2(-58.1171, 93.5435)
