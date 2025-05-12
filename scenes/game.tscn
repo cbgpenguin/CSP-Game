@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://gc66732gdlvv" path="res://resorces/sounds/lightBulbBuzz.mp3" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://infd5ky7cjbg" path="res://resorces/backrounds/backdrop1.png" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://41skwedgam7k" path="res://resorces/backrounds/no-shadows-250x125_2.png" id="3_lnu2h"]
 
 [sub_resource type="Gradient" id="Gradient_yqjtg"]
 offsets = PackedFloat32Array(0.0305085, 0.288136, 0.708475)
@@ -188,6 +188,7 @@ gradient = SubResource("Gradient_lbhrr")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 normal = Vector2(-0.00276242, -0.999996)
+distance = 462.868
 
 [node name="game" type="Node2D"]
 
@@ -196,7 +197,7 @@ normal = Vector2(-0.00276242, -0.999996)
 [node name="hangingLight" type="PointLight2D" parent="lighting"]
 top_level = true
 light_mask = 3
-position = Vector2(-135, -344)
+position = Vector2(-827, -839)
 scale = Vector2(4.33273, 4.29832)
 color = Color(1, 1, 0.439216, 1)
 energy = 1.8
@@ -213,6 +214,7 @@ occluder = SubResource("OccluderPolygon2D_lbhrr")
 occluder_light_mask = 4
 
 [node name="bookshelf" type="LightOccluder2D" parent="lighting/hangingLight"]
+position = Vector2(6.92404, -170.764)
 occluder = SubResource("OccluderPolygon2D_iywne")
 occluder_light_mask = 4
 
@@ -229,7 +231,7 @@ panning_strength = 1.21
 bus = &"SoundEffects"
 
 [node name="tableBarLight" type="PointLight2D" parent="lighting"]
-position = Vector2(319, -332)
+position = Vector2(2916, 742)
 scale = Vector2(5.48892, 3.54915)
 color = Color(1, 1, 0.423529, 1)
 energy = 1.6
@@ -244,24 +246,23 @@ texture = SubResource("GradientTexture2D_lbhrr")
 texture_scale = 0.1
 
 [node name="shelf" type="LightOccluder2D" parent="lighting/tableBarLight"]
-position = Vector2(-58.1171, 93.5435)
+position = Vector2(-289.492, -101.433)
 scale = Vector2(0.182185, 0.281758)
 occluder = SubResource("OccluderPolygon2D_yqjtg")
 occluder_light_mask = 2
 
 [node name="tableTop" type="LightOccluder2D" parent="lighting/tableBarLight"]
-position = Vector2(-58.1171, 93.5435)
+position = Vector2(-205.141, -37.7555)
 scale = Vector2(0.182185, 0.281758)
 occluder = SubResource("OccluderPolygon2D_lnu2h")
 occluder_light_mask = 2
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(0, -30)
-scale = Vector2(1.2, 1.2)
+position = Vector2(-230, -523)
 up_direction = Vector2(0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(-4, -102)
+position = Vector2(230, 524)
 scale = Vector2(6.3989, -34.9496)
 zoom = Vector2(1.5, 1.5)
 limit_left = -462
@@ -277,47 +278,50 @@ light_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="backrounds/room"]
 light_mask = 3
-position = Vector2(-25, -219)
-scale = Vector2(1.16712, 1.16712)
-texture = ExtResource("2_yqjtg")
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("3_lnu2h")
 
 [node name="windowCloseBuildings" type="ParallaxLayer" parent="backrounds"]
 z_index = -5
+position = Vector2(478, -207)
 motion_scale = Vector2(0.2, 0.2)
 motion_offset = Vector2(200, 200)
 
 [node name="Sprite2D" type="Sprite2D" parent="backrounds/windowCloseBuildings"]
-position = Vector2(166, -210)
+position = Vector2(611, -550)
 scale = Vector2(1.16712, 1.16712)
 texture = SubResource("NoiseTexture2D_lnu2h")
 
 [node name="windowFarBuildings" type="ParallaxLayer" parent="backrounds"]
 z_index = -5
+position = Vector2(-86, -417)
 motion_scale = Vector2(0.1, 0.1)
 motion_offset = Vector2(300, 300)
 
 [node name="Sprite2D" type="Sprite2D" parent="backrounds/windowFarBuildings"]
-position = Vector2(46, -216)
+position = Vector2(358, -657)
 scale = Vector2(4.93882, 5.66146)
 texture = SubResource("GradientTexture2D_iywne")
 
 [node name="darkner(give your heart shaped object)" type="CanvasModulate" parent="backrounds"]
-position = Vector2(-10, -287)
+position = Vector2(-996, -189)
 scale = Vector2(5.70312, 6.52344)
 color = Color(0.649893, 0.650042, 1, 1)
 
 [node name="roomSides" type="Node" parent="."]
 
 [node name="LeftRoomBoarder" type="StaticBody2D" parent="roomSides"]
-position = Vector2(-442, 0)
+position = Vector2(-878, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="roomSides/LeftRoomBoarder"]
+position = Vector2(-605, 4)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
 [node name="RightRoomBoarder" type="StaticBody2D" parent="roomSides"]
-position = Vector2(375, 0)
+position = Vector2(580, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="roomSides/RightRoomBoarder"]
+position = Vector2(576, -1)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
