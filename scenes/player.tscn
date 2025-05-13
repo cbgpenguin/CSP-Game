@@ -167,17 +167,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(30.9369, 160.386)
+size = Vector2(30.9369, 164)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -91)
+position = Vector2(0, -90)
 sprite_frames = SubResource("SpriteFrames_nvl01")
 animation = &"default (front face short idel)"
 autoplay = "default (front face short idel)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.66302, -83.2201)
+position = Vector2(-1.66302, -82)
 shape = SubResource("RectangleShape2D_qhqgy")
