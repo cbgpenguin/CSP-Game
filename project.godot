@@ -12,7 +12,7 @@ config_version=5
 
 config/name="\"Tails Noir\"-like POC :3"
 config/tags=PackedStringArray(":3")
-run/main_scene="uid://dolfmu0v25x6g"
+run/main_scene="uid://dsjpqb2jp40iy"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

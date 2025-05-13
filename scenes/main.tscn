@@ -1,0 +1,326 @@
+[gd_scene load_steps=18 format=3 uid="uid://dsjpqb2jp40iy"]
+
+[ext_resource type="PackedScene" uid="uid://mh6ihk61d2ke" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://41skwedgam7k" path="res://resorces/backrounds/no-shadows-250x125_2.png" id="3_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://gc66732gdlvv" path="res://resorces/sounds/lightBulbBuzz.mp3" id="3_sugp2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tbgi4"]
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tefeu"]
+gradient = SubResource("Gradient_lbhrr")
+
+[sub_resource type="Gradient" id="Gradient_yqjtg"]
+offsets = PackedFloat32Array(0.0305085, 0.288136, 0.708475)
+colors = PackedColorArray(1, 1, 1, 1, 0.383838, 0.383838, 0.383838, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jyhfs"]
+gradient = SubResource("Gradient_yqjtg")
+width = 1280
+height = 1280
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tbgi4"]
+polygon = PackedVector2Array(-30.235, 36.9912, 27.6962, 36.9912, 27.0038, 66.7703, 23.7725, 67.0029, 23.5417, 45.5992, -14.7713, 46.0645, -15.2329, 65.8397, -28.8502, 65.8397)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tefeu"]
+polygon = PackedVector2Array(-71.0868, -9.53861, -33.697, -9.53861, -34.6202, 65.8397, -70.856, 65.3744)
+
+[sub_resource type="Animation" id="Animation_iywne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lightbulbNoise:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("lightbulbNoise:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+resource_name = "flicker"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.43333, 4.488, 8.63333, 8.7, 53.6333, 53.7, 55.7667, 55.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.46667, 8.64, 15.3667, 15.5, 53.5333, 53.6667, 55.7333, 55.78),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 0.933035, 0.933035, 53231.9),
+"update": 0,
+"values": [1.8, 0.85, 0.85, 1.8, 1.8, 0.8, 0.8, 1.8]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lightbulbNoise")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 61.5389,
+"start_offset": 7.78,
+"stream": ExtResource("3_sugp2")
+}, {
+"end_offset": 69.69,
+"start_offset": 0.0,
+"stream": ExtResource("3_sugp2")
+}, {
+"end_offset": 23.7,
+"start_offset": 5.0,
+"stream": ExtResource("3_sugp2")
+}, {
+"end_offset": 20.1787,
+"start_offset": 51.611,
+"stream": ExtResource("3_sugp2")
+}, {
+"end_offset": 0.0,
+"start_offset": 20.5668,
+"stream": ExtResource("3_sugp2")
+}],
+"times": PackedFloat32Array(0, 4.53333, 8.66667, 53.8, 55.8333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("lightbulbNoise:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(8.46667, 8.63333, 15.3333, 15.7667, 53.4333, 53.7, 55.6667, 55.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [10.0, 0.0, 0.0, 10.0, 10.0, 0.0, 0.0, 10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("lightbulbNoise:pitch_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.43333, 8.63333, 15.1, 15.5333, 53.4333, 53.7, 55.6333, 55.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.2, 0.5, 1.0, 1.0, 0.2, 0.2, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
+_data = {
+&"RESET": SubResource("Animation_iywne"),
+&"flicker": SubResource("Animation_lbhrr")
+}
+
+[sub_resource type="Gradient" id="Gradient_lnu2h"]
+offsets = PackedFloat32Array(0.0474576, 0.138983, 0.722034)
+colors = PackedColorArray(1, 1, 1, 1, 0.809045, 0.809045, 0.809045, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o6xl0"]
+gradient = SubResource("Gradient_lnu2h")
+width = 1280
+height = 1280
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tipki"]
+polygon = PackedVector2Array(203, -361, 413, -361, 413, -339, 203, -340)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_85g3d"]
+polygon = PackedVector2Array(207, -193, 411, -195, 412, -184, 204, -185)
+
+[node name="main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch = true
+stretch_shrink = 9
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(213, 120)
+render_target_update_mode = 4
+
+[node name="backrounds" type="ParallaxBackground" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+layer = -5
+
+[node name="room" type="ParallaxLayer" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds"]
+light_mask = 3
+position = Vector2(125.333, 62.7778)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds/room"]
+light_mask = 3
+texture = ExtResource("3_jyhfs")
+
+[node name="windowCloseBuildings" type="ParallaxLayer" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds"]
+z_index = -5
+position = Vector2(1328.89, -276.444)
+motion_scale = Vector2(0.2, 0.2)
+motion_offset = Vector2(200, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds/windowCloseBuildings"]
+position = Vector2(642.111, -647)
+scale = Vector2(1.16712, 1.16712)
+texture = SubResource("NoiseTexture2D_tbgi4")
+
+[node name="windowFarBuildings" type="ParallaxLayer" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds"]
+z_index = -5
+position = Vector2(122.333, 60.7778)
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(300, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds/windowFarBuildings"]
+position = Vector2(448.444, -648.333)
+scale = Vector2(4.93882, 5.66146)
+texture = SubResource("GradientTexture2D_tefeu")
+
+[node name="darkner(give your heart shaped object)" type="CanvasModulate" parent="CanvasLayer/SubViewportContainer/SubViewport/backrounds"]
+position = Vector2(-996, -189)
+scale = Vector2(5.70312, 6.52344)
+color = Color(0.649893, 0.650042, 1, 1)
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer2"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="player" parent="CanvasLayer/SubViewportContainer2/SubViewport" instance=ExtResource("2_0wfyh")]
+position = Vector2(326.667, 357.333)
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer2/SubViewport/player"]
+position = Vector2(-3.5, -161.5)
+zoom = Vector2(2, 2)
+
+[node name="lighting" type="Node" parent="CanvasLayer"]
+
+[node name="hangingLight" type="PointLight2D" parent="CanvasLayer/lighting"]
+top_level = true
+light_mask = 3
+position = Vector2(393, 760)
+scale = Vector2(4.33273, 4.29832)
+color = Color(1, 1, 0.439216, 1)
+energy = 1.8
+range_layer_min = -512
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.6
+shadow_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_jyhfs")
+texture_scale = 0.13
+
+[node name="desk" type="LightOccluder2D" parent="CanvasLayer/lighting/hangingLight"]
+occluder = SubResource("OccluderPolygon2D_tbgi4")
+occluder_light_mask = 4
+
+[node name="bookshelf" type="LightOccluder2D" parent="CanvasLayer/lighting/hangingLight"]
+position = Vector2(6.92404, -170.764)
+occluder = SubResource("OccluderPolygon2D_tefeu")
+occluder_light_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/lighting/hangingLight"]
+libraries = {
+&"": SubResource("AnimationLibrary_p57ef")
+}
+autoplay = "flicker"
+
+[node name="lightbulbNoise" type="AudioStreamPlayer2D" parent="CanvasLayer/lighting/hangingLight"]
+max_distance = 244.0
+attenuation = 0.812252
+panning_strength = 1.21
+bus = &"SoundEffects"
+
+[node name="tableBarLight" type="PointLight2D" parent="CanvasLayer/lighting"]
+position = Vector2(1471, 257)
+scale = Vector2(5.48892, 3.54915)
+color = Color(1, 1, 0.423529, 1)
+energy = 1.6
+range_layer_min = -500
+range_layer_max = 5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.7
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_o6xl0")
+texture_scale = 0.1
+
+[node name="shelf" type="LightOccluder2D" parent="CanvasLayer/lighting/tableBarLight"]
+position = Vector2(-45.7285, 29.3028)
+scale = Vector2(0.182185, 0.281758)
+occluder = SubResource("OccluderPolygon2D_tipki")
+occluder_light_mask = 2
+
+[node name="tableTop" type="LightOccluder2D" parent="CanvasLayer/lighting/tableBarLight"]
+position = Vector2(-57.024, 126.227)
+scale = Vector2(0.182185, 0.281758)
+occluder = SubResource("OccluderPolygon2D_85g3d")
+occluder_light_mask = 2
